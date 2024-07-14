@@ -1,0 +1,56 @@
+---
+import logoUTN from "../../assets/Logo_utn.png";
+
+
+interface Props {
+    transparent?: boolean;
+}
+
+const { transparent } = Astro.props;
+---
+
+<nav
+    id="navbar"
+    class={`bg-slate-900 fixed z-50 transition-all ease-linear duration-100 w-full flex justify-center md:justify-between bg-ns-primary-darker text-ns-white px-32 py-6 border-solid border-y-0 border-transparent`}
+>
+    <figure class="hidden md:flex items-center w-36">
+        <a href={`/home`}>
+            <img
+                src={logoUTN.src}
+                alt="Space Apps"
+                class="size-8/12"
+            />
+        </a>
+    </figure>
+    <ul class="flex items-center justify-center gap-6 text-white">
+        <li><a href={`/`}>Home</a></li>
+        <li><a href={`/`}>Predict</a></li>     
+    </ul>
+</nav>
+
+
+
+
+<style>
+    #languageSelect {
+      background-color: transparent;
+      border: none;
+      color: inherit;
+      font: inherit;
+      padding: 0.5rem 1rem;
+      padding-right: 2rem; 
+      cursor: pointer;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+    
+    #languageSelect option {
+      background-color: #000; 
+      color: #fff; 
+    }
+    
+    #languageSelect::-ms-expand {
+      display: none; 
+    }
+</style>
