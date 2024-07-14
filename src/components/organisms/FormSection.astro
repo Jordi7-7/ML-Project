@@ -1,0 +1,51 @@
+---
+import Input from "../molecules/Input.astro";
+import Select from "../molecules/Select.astro";
+---
+
+<form
+    id="test-form"
+    class="grid grid-cols-2 gap-x-16"
+>
+    <Select
+        label="Genero"
+        id="gender"
+        options={["Masculino", "Femenino", "Otros"]}
+    />
+    <Input label="Edad" id="age" type="number" placeholder="Ingrese su Edad" />
+    <Select
+        label="Tiene Hipertension?"
+        id="hypertension"
+        options={["SI","NO"]}
+    />
+    <Select
+        label="Tiene enfermedades cardiacas?"
+        id="heart_disease"
+        options={["SI","NO"]}
+    />
+    <Select
+        label="¿Con que frecuencia fuma?"
+        id="smoking_history"
+        options={[
+            "No información",
+            "Nunca",
+            "Anteriormente",
+            "Actualmente",
+            "No Actualmente",
+        ]}
+    />
+    <Input label="Altura" id="height" type="number" placeholder="Seleccione" />
+    <Input label="Peso" id="weight" type="number" placeholder="Seleccione" />
+    <Input
+        label="Nivel de Hemoglobina"
+        id="H_level"
+        type="number"
+        placeholder="Ingrese su Nivel de Hemoglobina"
+    />
+    <Input
+        label="Nivel de Glucosa"
+        id="G_level"
+        type="number"
+        placeholder="Ingrese su Nivel de Glucosa"
+    />
+</form>
