@@ -3,7 +3,7 @@ import Input from "../molecules/Input.astro";
 import Select from "../molecules/Select.astro";
 import Button from "../molecules/Button.astro";
 ---
-
+<>
 <form id="test-form" class="grid grid-cols-2 gap-x-16">
   <Select
     label="Genero"
@@ -48,6 +48,9 @@ import Button from "../molecules/Button.astro";
   />
   <Button type="submit" label="Enviar" />
 </form>
+
+<div id="result" class="mt-4 text-ns-base text-lg"></div>
+</>
 
 <script>
   // @ts-nocheck
@@ -96,7 +99,10 @@ import Button from "../molecules/Button.astro";
             },
             body: JSON.stringify({ input: dataInput }),
           });
-          console.log(await response.json());
+        //   console.log(await response.json());
+          const result = await response.json();
+          console.log(result);
+          document.getElementById("result").innerText = result.model_sigmoid_prediction == 1 ? "Tienes Diabetes :c" : "No tienes Diabetes :)";
         } catch (error) {
           console.error("Error:", error);
         }
