@@ -52,12 +52,12 @@ import Button from "../molecules/Button.astro";
 <script>
   // @ts-nocheck
 
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = (await import.meta.env.PUBLIC_API_URL) as string;
   document.addEventListener("DOMContentLoaded", function () {
     document
-      .getElementById("test-form")
-      .addEventListener("submit", async (event) => {
-        event.preventDefault();
+    .getElementById("test-form")
+    .addEventListener("submit", async (event) => {
+      event.preventDefault();
         const data = {
           gender: (document.getElementById("gender") as HTMLSelectElement)
             .selectedIndex,
@@ -87,11 +87,7 @@ import Button from "../molecules/Button.astro";
         dataInput.push(parseFloat(data.weight / (data.height * data.height)));
         dataInput.push(parseFloat(data.H_level));
         dataInput.push(parseFloat(data.G_level));
-
-        console.log(JSON.stringify({ input: dataInput }));
-        console.log(apiUrl);
-        console.log(import.meta.env);
-
+        
         try {
           const response = await fetch(apiUrl, {
             method: "POST",
