@@ -1,0 +1,109 @@
+---
+import Input from "../molecules/Input.astro";
+import Select from "../molecules/Select.astro";
+import Button from "../molecules/Button.astro";
+---
+
+<form id="test-form" class="grid grid-cols-2 gap-x-16">
+  <Select
+    label="Genero"
+    id="gender"
+    options={["Masculino", "Femenino", "Otros"]}
+  />
+  <Input label="Edad" id="age" type="number" placeholder="Ingrese su Edad" />
+  <Select
+    label="Tiene Hipertension?"
+    id="hypertension"
+    options={["SI", "NO"]}
+  />
+  <Select
+    label="Tiene enfermedades cardiacas?"
+    id="heart_disease"
+    options={["SI", "NO"]}
+  />
+  <Select
+    label="¿Con que frecuencia fuma?"
+    id="smoking_history"
+    options={[
+      "No información",
+      "Nunca",
+      "Anteriormente",
+      "Actualmente",
+      "No Actualmente",
+    ]}
+  />
+  <Input label="Altura (Metros)" id="height" type="number" placeholder="1.75" />
+  <Input label="Peso (Kg)" id="weight" type="number" placeholder="90.4" />
+  <Input
+    label="Nivel de Hemoglobina"
+    id="H_level"
+    type="number"
+    placeholder="Ingrese su Nivel de Hemoglobina"
+  />
+  <Input
+    label="Nivel de Glucosa"
+    id="G_level"
+    type="number"
+    placeholder="Ingrese su Nivel de Glucosa"
+  />
+  <Button type="submit" label="Enviar" />
+</form>
+
+<script>
+  // @ts-nocheck
+
+  const apiUrl = import.meta.env.VITE_API_URL;
+  document.addEventListener("DOMContentLoaded", function () {
+    document
+      .getElementById("test-form")
+      .addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const data = {
+          gender: (document.getElementById("gender") as HTMLSelectElement)
+            .selectedIndex,
+          age: (document.getElementById("age") as HTMLInputElement).value,
+          hypertension: (
+            document.getElementById("hypertension") as HTMLSelectElement
+          ).selectedIndex,
+          heart_disease: (
+            document.getElementById("heart_disease") as HTMLSelectElement
+          ).selectedIndex,
+          smoking_history: (
+            document.getElementById("smoking_history") as HTMLSelectElement
+          ).selectedIndex,
+          height: (document.getElementById("height") as HTMLInputElement).value,
+          weight: (document.getElementById("weight") as HTMLInputElement).value,
+          H_level: (document.getElementById("H_level") as HTMLInputElement)
+            .value,
+          G_level: (document.getElementById("G_level") as HTMLInputElement)
+            .value,
+        };
+        const dataInput = [];
+        dataInput.push(parseFloat(data.gender));
+        dataInput.push(parseFloat(data.age));
+        dataInput.push(parseFloat(data.hypertension));
+        dataInput.push(parseFloat(data.heart_disease));
+        dataInput.push(parseFloat(data.smoking_history));
+        dataInput.push(parseFloat(data.weight / (data.height * data.height)));
+        dataInput.push(parseFloat(data.H_level));
+        dataInput.push(parseFloat(data.G_level));
+
+        console.log(JSON.stringify({ input: dataInput }));
+        console.log(apiUrl);
+        console.log(import.meta.env);
+
+        try {
+          const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ input: dataInput }),
+          });
+          console.log(await response.json());
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      });
+  });
+</script>

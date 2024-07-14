@@ -1,12 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import DiabetesForm from '../components/DiabetesForm.astro';
+import H1 from '../components/atoms/H1.astro';
+import DiabetesForm from '../components/organisms/FormSection.astro';
+import Divider from '../components/atoms/Divider.astro';
 ---
 
 <Layout title="Welcome to ML Project!">
 	<main class="flex flex-col justify-center items-center h-screen bg-slate-200">
-		<Card title="Welcome to Machien Learning Project!"> </Card>
+		<H1 title="Welcome to Machine Learning Project!"> </H1>
+		<Divider />
 		<DiabetesForm />
 	</main>
 </Layout>
