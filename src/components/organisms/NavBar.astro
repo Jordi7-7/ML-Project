@@ -1,12 +1,5 @@
 ---
 import logoUTN from "../../assets/Logo_utn.png";
-
-
-interface Props {
-    transparent?: boolean;
-}
-
-const { transparent } = Astro.props;
 ---
 
 <nav
@@ -18,7 +11,7 @@ const { transparent } = Astro.props;
             <img
                 src={logoUTN.src}
                 alt="Space Apps"
-                class="size-8/12"
+                class="size-4/12"
             />
         </a>
     </figure>
@@ -27,9 +20,6 @@ const { transparent } = Astro.props;
         <li><a href={`/`}>Predict</a></li>     
     </ul>
 </nav>
-
-
-
 
 <style>
     #languageSelect {
