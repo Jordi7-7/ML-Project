@@ -7,10 +7,11 @@ interface Props {
     type?: HTMLAttributes<'input'>['type'];
     placeholder?: HTMLAttributes<'input'>['placeholder'];
     required?: boolean;
+    isFloat?: boolean;
 }
 
 
-const { label, id, type, placeholder, required } = Astro.props;
+const { label, id, type, placeholder, required, isFloat } = Astro.props;
 ---
 
 <div class="mb-5 w-full">
@@ -25,5 +26,7 @@ const { label, id, type, placeholder, required } = Astro.props;
         class="bg-gray-50 border border-gray-300 text-ns-base text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
         placeholder={placeholder ?? "Ingresa"}
         required={required ?? false}
+        min="0"
+        step={isFloat ? "0.01": "1"}
     />
 </div>
